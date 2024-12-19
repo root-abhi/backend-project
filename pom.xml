@@ -34,6 +34,14 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <!-- Allure Repository -->
+        <repository>
+            <id>allure</id>
+            <url>https://dl.bintray.com/qameta/maven</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <!-- Maven Compiler Plugin -->

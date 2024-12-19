@@ -34,6 +34,29 @@ pipeline {
         */
     }
 
+            stage('Test & Allure Report') {
+
+            steps {
+
+                script {
+
+                    // Run tests and generate Allure report
+
+                    sh 'mvn test'
+
+
+
+                    // Generate Allure reports
+
+                    sh 'mvn allure:serve'
+
+                }
+
+            }
+
+        }
+
+
     post {
         success {
             echo 'Build successful!'

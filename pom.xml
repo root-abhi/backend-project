@@ -39,23 +39,6 @@
         </plugins>
     </build>
 
-    <build>
-    <plugins>
-        <plugin>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-maven-plugin</artifactId>
-            <version>YOUR_CUCUMBER_PLUGIN_VERSION</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>json</goal>  <!-- Generate JSON output -->
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
-
 
     <distributionManagement>
         <repository>

@@ -38,7 +38,7 @@
         <!-- Allure Repository -->
         <repository>
             <id>allure</id>
-            <url>https://dl.bintray.com/qameta/maven</url>
+            <url>https://repo.maven.apache.org/maven2/io/qameta/allure/</url>
         </repository>
     </repositories>
 

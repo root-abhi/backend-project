@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     environment {
-        MAVEN_HOME = tool name: 'M3', type: 'Tool'  // This assumes you've configured Maven in Jenkins
-        NEXUS_URL = 'http://your-nexus-repo-url/repository/maven-releases/' // Your Nexus URL
+        // Properly reference the Maven tool
+        MAVEN_HOME = tool 'M3'  // 'M3' should match your Maven configuration in Jenkins
+        NEXUS_URL = 'http://your-nexus-repo-url/repository/maven-releases/'  // Your Nexus URL
         NEXUS_CREDENTIALS = 'nexus-credentials'  // Jenkins credentials ID for Nexus
-        PROJECT_VERSION = '1.0.${BUILD_NUMBER}'  // Versioning for your project
+        PROJECT_VERSION = "1.0.${BUILD_NUMBER}"  // Dynamic versioning
     }
 
     stages {
@@ -19,8 +20,8 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    // Clean and build the project with Maven, run tests (including Cucumber)
-                    sh "'${MAVEN_HOME}/bin/mvn' clean install -DskipTests=false"
+                    // Run Maven clean install and tests
+                    sh "${MAVEN_HOME}/bin/mvn clean install -DskipTests=false"
                 }
             }
         }
@@ -28,8 +29,8 @@ pipeline {
         stage('Push to Nexus') {
             steps {
                 script {
-                    // Deploy to Nexus repository using Maven Deploy plugin
-                    sh "'${MAVEN_HOME}/bin/mvn' deploy -DskipTests -DaltDeploymentRepository=nexus::default::${NEXUS_URL} -Dversion=${PROJECT_VERSION}"
+                    // Deploy the artifacts to Nexus repository
+                    sh "${MAVEN_HOME}/bin/mvn deploy -DskipTests -DaltDeploymentRepository=nexus::default::${NEXUS_URL} -Dversion=${PROJECT_VERSION}"
                 }
             }
         }
@@ -37,13 +38,12 @@ pipeline {
 
     post {
         success {
-            // Send success notification (optional)
+            // Notification or success message
             echo 'Build and deployment successful!'
         }
         failure {
-            // Send failure notification (optional)
+            // Notification or failure message
             echo 'Build or deployment failed!'
         }
     }
 }
-

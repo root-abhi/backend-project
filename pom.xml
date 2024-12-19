@@ -2,14 +2,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <groupId>com.example</groupId>
 
     <artifactId>backend-project</artifactId>
 
     <version>1.0-SNAPSHOT</version>
-
 
 
     <dependencies>
@@ -51,7 +48,6 @@
     </dependencies>
 
 
-
     <build>
 
         <plugins>
@@ -73,3 +69,30 @@
                 </configuration>
 
             </plugin>
+
+        </plugins>
+
+    </build>
+
+
+    <distributionManagement>
+
+        <repository>
+
+            <id>nexus</id>
+
+            <url>http://your-nexus-repo-url/repository/maven-releases/</url>
+
+        </repository>
+
+        <snapshotRepository>
+
+            <id>nexus</id>
+
+            <url>http://your-nexus-repo-url/repository/maven-snapshots/</url>
+
+        </snapshotRepository>
+
+    </distributionManagement>
+
+</project>
